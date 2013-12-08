@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>Maak je eigen wenskaart</title>
+	<link rel="icon" type="image/x-icon" href="favicon.ico" />
+	<link rel="icon" type="image/png" href="favicon.png">
+	<meta name="Generator" content="Processing" />
+	<meta name="description" content="Een pagina waar je je eigen eindejaarswensenkaartje kan maken." />
+	<meta http-equiv="keywords" content="Multec, Erasmushogeschool Brussel" lang="EN" />
+	<meta name="copyright" content="(c) 2013, Erasmushogeschool Brussel" />
+	
+	<!--[if lt IE 9]>
+	<script type="text/javascript">alert("Your browser does not support the canvas tag.");</script>
+	<![endif]-->
+	<link rel="stylesheet" href="css/normalize.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+	<link rel="stylesheet" href="css/smoothness/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="css/colpick.css" type="text/css" />
+	<link rel="stylesheet" href="wenskaart.css" rel="stylesheet" />
+	
+	<script src="js/jquery-1.9.1.js"></script>
+	<script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+	<script src="js/colpick.js" type="text/javascript"></script>
+	<script src="processing.js" type="text/javascript"></script>
+	<script src="facebook-canvas.js" type="text/javascript"></script>
+	<script src="wenskaart.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+	<div id="fb-root"></div>
+	<script>
+	  window.fbAsyncInit = function() {
+	    // init the FB JS SDK
+	    FB.init({
+	      appId      : 549698981790372,                        // App ID from the app dashboard
+	      status     : true,                                 // Check Facebook Login status
+	      xfbml      : true                                  // Look for social plugins on the page
+	    });
+
+	    // Additional initialization code such as adding Event Listeners goes here
+	  };
+
+	  window.fbAsyncInit = function() {
+	  FB.init({
+	    appId      : 549698981790372,
+	    status     : true, // check login status
+	    cookie     : true, // enable cookies to allow the server to access the session
+	    xfbml      : true  // parse XFBML
+	  });
+
+	  // Here we subscribe to the auth.authResponseChange JavaScript event. This event is fired
+	  // for any authentication related change, such as login, logout or session refresh. This means that
+	  // whenever someone who was previously logged out tries to log in again, the correct case below 
+	  // will be handled. 
+	  FB.Event.subscribe('auth.authResponseChange', function(response) {
+	    // Here we specify what we do with the response anytime this event occurs. 
+	    if (response.status === 'connected') {
+	      // The response object is returned with a status field that lets the app know the current
+	      // login status of the person. In this case, we're handling the situation where they 
+	      // have logged in to the app.
+	      testAPI();
+	    } else if (response.status === 'not_authorized') {
+	      // In this case, the person is logged into Facebook, but not into the app, so we call
+	      // FB.login() to prompt them to do so. 
+	      // In real-life usage, you wouldn't want to immediately prompt someone to login 
+	      // like this, for two reasons:
+	      // (1) JavaScript created popup windows are blocked by most browsers unless they 
+	      // result from direct interaction from people using the app (such as a mouse click)
+	      // (2) it is a bad experience to be continually prompted to login upon page load.
+	      FB.login();
+	    } else {
+	      // In this case, the person is not logged into Facebook, so we call the login() 
+	      // function to prompt them to do so. Note that at this stage there is no indication
+	      // of whether they are logged into the app. If they aren't then they'll see the Login
+	      // dialog right after they log in to Facebook. 
+	      // The same caveats as above apply to the FB.login() call here.
+	      FB.login();
+	    }
+	  });
+	  };
+	
+	  // Load the SDK asynchronously
+	  (function(){
+	     // If we've already installed the SDK, we're done
+	     if (document.getElementById('facebook-jssdk')) {return;}
+
+	     // Get the first script element, which we'll use to find the parent node
+	     var firstScriptElement = document.getElementsByTagName('script')[0];
+
+	     // Create a new script element and set its id
+	     var facebookJS = document.createElement('script'); 
+	     facebookJS.id = 'facebook-jssdk';
+
+	     // Set the new script's source to the source of the Facebook JS SDK
+	     facebookJS.src = '//connect.facebook.net/en_US/all.js';
+
+	     // Insert the Facebook JS SDK into the DOM
+	     firstScriptElement.parentNode.insertBefore(facebookJS, firstScriptElement);
+	   }());
+	
+
+	  // Here we run a very simple test of the Graph API after login is successful. 
+	  // This testAPI() function is only called in those cases. 
+	  function testAPI() {
+	    console.log('Welcome!  Fetching your information.... ');
+	    FB.api('/me', function(response) {
+	      console.log('Good to see you, ' + response.name + '.');
+	    });
+	  }
+	</script>
+	
+	<div id="page">
+		<img id="title" src="images/titel.png" width="381" height="57">
+		<a href="http://www.multec.be"><img id="multec_154" src="images/multec_154.png" width="154" height="50"></a>
+		<canvas id="wenskaart" data-processing-sources="wenskaart_web.pde" 
+				width="700" height="360">
+			<p>Uw browser ondersteunt de canvas tag niet.</p>
+		</canvas>
+		<noscript>
+			<p>JavaScript is vereist op deze pagina.</p>
+		</noscript>
+		
+		<div class="settings">
+			
+			<div id="settings-right">
+				<div class="setting-box">
+					<div class="setting-label">Aantal sneeuwvlokken</div>
+					<div class="setting-value"><div id="nFlakes_slider"></div>
+					</div>
+				</div>
+				<div class="setting-box">
+					<div class="setting-label">Aantal armen</div>
+					<div class="setting-value"><div id="nTrunks_slider"></div></div>
+				</div>
+				<div class="setting-box">
+					<div class="setting-label">Aantal vingers</div>
+					<div class="setting-value"><div id="nBranch_slider"></div></div>
+				</div>
+				<div class="setting-box centered">
+					<button type="button" class="skinned"
+						onclick="resetSeed()">Probeer andere vlokken</button>
+				</div>
+			</div>
+			
+			<div id="settings-left">
+				<div class="setting-box">
+					<div class="setting-label">Tekst&nbsp;
+						<input type="text" value="Beste wensen voor het nieuwe jaar" id="textInput_1">
+					</div>
+				</div>
+				<div class="setting-box">
+					<div class="setting-label">Kleurenschema&nbsp;
+					<button id="background-box"></button>	
+					<button id="foreground-box"></button>
+					<button id="text-color-box"></button>
+					</div>
+				</div>
+				<div class="setting-box">
+					<div class="setting-label">Layout&nbsp;
+						<select id="layout-options"></select>
+					</div>
+				</div>
+				<div class="setting-box">
+					<div class="setting-label">Font&nbsp;
+						<select id="font-options"></select>
+						<select id="fontsize-options"></select>
+					</div>
+				</div>
+				<div class="setting-box">
+					<div class="setting-label">
+						Toon Multec-logo&nbsp;
+						<input id="logo-checkbox" type="checkbox" checked="true"/>
+					</div>
+				</div>
+			</div>
+			
+			<hr />
+			
+			<div class="setting-box centered">
+				<button type="button" class="skinned"
+					onclick="exportImage()">Open je e-card als beeldbestand...</button>
+				<button type="button" class="skinned"
+					onclick="submitToFacebook()">Post je e-card op Facebook...</button>
+			</div>
+		</div>
+		
+		<div id="credits">
+			<p>Deze dienst wordt u aangeboden door <a href="http://www.multec.be"><strong>Multec</strong></a>, onze gloednieuwe professionele bachelor in multimedia en communicatietechnologie aan de <a href="http://www.ehb.be">Erasmushogeschool Brussel</a>. Het idee en de basisuitwerking zijn van Multec-student <strong>Inti De Ceukelaire</strong> en zijn het resultaat van een opdracht voor het vak <strong>Creative Programming</strong>.</p>
+			<p>Bij de realisatie van deze dienst werden de volgende bibliotheken en tools gebruikt: <a href="http://processing.org">Processing 2</a>, <a href="http://processingjs.org">Processing.js</a>, <a href="http://jquery.com">jQuery</a>, <a href="http://jqueryui.com">jQuery UI</a>, <a href="http://necolas.github.io/normalize.css/">normalize.css</a>.</p>
+		</div><!-- end credits div -->
+		
+		<img id="kaartje" src="images/kaartje.png" width="700" height="407">
+		
+		<div id="footer">
+			<a href="http://www.ehb.be"><img id="ehb_122" src="images/ehb_122.png" width="122" height="89"></a>
+		</div>
+		
+	</div><!-- end page div -->
+</body>
+
+</html>

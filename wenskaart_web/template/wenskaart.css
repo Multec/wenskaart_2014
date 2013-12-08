@@ -1,0 +1,262 @@
+
+/* ****************************************************************
+ * DEFAULT HTML STYLING
+ * ---------------------------------------------------------------- */
+
+a img { 
+	border: 0px solid transparent;
+}
+
+h1 {
+	font-family: Verdana, Geneva, sans-serif;
+	font-weight: lighter;
+	width: 100%; letter-spacing: 0.1em;
+	margin: 0.9em 0 1.75em 0;
+	font-size: 1.6em;
+	color: #838383;
+}
+
+h2 {
+	font-family: Verdana, Geneva, sans-serif;
+	font-weight: normal;
+	width: 100%; letter-spacing: 0.1em;
+	margin: 0 0 0 0;
+	font-size: 1.05em;
+}
+
+hr {
+	clear:both;
+	display: block;
+	height: 1px;
+	border: 0; border-top: 1px solid #ccc;
+	margin: 1em 0; padding: 0;
+}
+
+canvas { 
+	display: block; 
+	outline: 0px; 
+	margin: 0;
+	-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0 0 8px rgba(0,0,0,0.5);
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+table {
+	margin: 0;
+	padding: 0;
+}
+table, td {
+	border: 0;
+}
+td {
+	vertical-align: top;
+}
+strong, b {
+	font-weight: normal;
+	color: #000000;
+}
+
+/* ****************************************************************
+ * FORM STYLING
+ * ---------------------------------------------------------------- */
+
+input, textarea {
+	height: 1.7em;
+	padding: 0 7px;
+	margin: 0;
+	background: #ffffff;
+	display: inline-block;
+	border: 1px solid #bbbbbb;
+}
+
+select {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: .85em;
+	border: 1px solid #cccccc;
+	border-radius: 4px;
+	-webkit-border-radius:4px;
+	-moz-border-radius:4px;
+}
+
+input[type=checkbox]{
+	position: relative;
+	vertical-align: middle;
+	bottom: 1px;
+}
+
+button.skinned {
+	margin: 0 8px;
+}
+
+div.centered {
+	text-align: center;
+}
+
+/* ****************************************************************
+ * STRUCTURE
+ * ---------------------------------------------------------------- */
+
+body {
+	background-color: #DCDCDC;
+	background-image:url(images/achtergrond.png);
+	font-weight: normal;
+	text-decoration: none;
+	line-height: normal;
+	margin: 0;
+	padding: 0;
+}
+a, a:link, a:visited, a:active, a:hover {
+	text-decoration: none;
+}
+a, a:link, a:visited {
+	color: #000000;
+}
+a:active {
+	color: #be0000;
+}
+
+body,
+div.selector select {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: .85em;
+	color: #777777;
+}
+
+div#page {
+	width: 700px;
+	margin: 0 auto 100px auto;
+	padding: 1.75em 30px 1em 30px;
+	background-color: #ffffff;
+	-webkit-box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0 0 16px rgba(0,0,0,0.3);
+	box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+	border-top: 4px solid #be0000;
+	border-bottom: 4px solid #be0000;
+}
+
+/*--- HEADER ---*/
+img#title {
+	margin-top: 22px;
+	margin-bottom: 40px;
+}
+img#multec_154 {
+	float: right;
+}
+
+/*--- WENSKAART ---*/
+div.wenskaart-div {
+	background-color: #eee;
+	width: 700px;
+	height: 360px;
+	text-align:center;
+}
+
+div#settings-left {
+	float: left;
+	width: 370px;
+}
+div#settings-right {
+	float: right;
+	width: 270px;
+}
+
+/*--- SETTINGS ---*/
+div.settings {
+	margin: 3em 0;
+	padding: 0.1em 1em;
+	background-color: #fafafa;
+	border: 1px solid #cccccc;
+	border-radius: 4px;
+	-webkit-border-radius:4px;
+	-moz-border-radius:4px;
+	clear:both;
+	overflow: auto;
+}
+table.settings {
+	width: 100%;
+	clear:both;
+}
+div.setting-box {
+	margin: 1em 0 1em 0;
+}
+div.setting-label {
+	margin: .3em 0;
+}
+
+/*--- COLORS ---*/
+#foreground-box,
+#background-box,
+#text-color-box {
+	width: 40px; height: 20px;
+	display: inline-block;
+	position: relative;
+	padding: 0;
+	line-height: normal;
+	margin-right: .1em;
+	cursor: pointer;
+	vertical-align: middle;
+	text-align: center;
+	overflow: visible; /* removes extra width in IE */
+	border: 1px solid #aaaaaa;
+	border-radius: 4px;
+	-webkit-border-radius:4px;
+	-moz-border-radius:4px;
+}
+#foreground-box {
+	background-color: #ffffff;
+}
+#background-box {
+	background-color: #be0000;
+}
+#text-color-box {
+	background-color: #ffffff;
+}
+
+.ui-slider {
+	z-index: 1000 !important;
+}
+.colpick {
+	z-index: 1010 !important;
+}
+
+/*
+swidth: 500px;
+*/
+input#textInput_1 {
+	width: 300px;
+}
+
+/*--- CREDITS ---*/
+div#credits {
+	margin: 2em 0;
+	padding: 0.1em 1em;
+	background-color: #fafafa;
+	border: 1px solid #cccccc;
+	border-radius: 4px;
+	-webkit-border-radius:4px;
+	-moz-border-radius:4px;
+}
+div#credits p {
+	text-align: justify;
+}
+
+/*--- FOOTER ---*/
+img#kaartje {
+	margin: 30px 0 0 0;
+}
+div#footer {
+	text-align: center;
+	margin: 10px 0 0 0;
+}
+img#ehb_122 {
+}
+
+/* ****************************************************************
+ * JQUERY UI STYLING
+ * ---------------------------------------------------------------- */
+
+.ui-slider {
+	margin: 6px 10px 4px 6px;
+}
+.ui-slider-range { background: #EEEEEE; }
+.ui-slider .ui-slider-handle { border-color: #aaaaaa; }
