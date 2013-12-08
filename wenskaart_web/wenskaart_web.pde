@@ -2,9 +2,8 @@
  
  wenskaart.ode
  
- A creation of Multec, the professional bachelor in multimedia &
- communication technology at the Erasmus University College in
- Brussels.
+ A creation from Multec, the professional bachelor in multimedia and
+ communication technology at the Erasmus University College in Brussels.
  
  Authors:
  - Inti De Ceukelaire
@@ -99,30 +98,6 @@ void draw() {
   }
 
   noLoop();
-}
-
-void drawMultec() {
-  float mw = 100;
-  float mh = multec.height * mw / multec.width;
-  multec.disableStyle();
-  pushMatrix();
-  if (layout == "links") {
-    translate(marginW, height - 25 - mh);
-  }
-  else if (layout == "rechts" || layout == "centraal") {
-    translate(width - marginW - mw, height - 25 - mh);
-  }
-  else {
-    translate(width - marginW - mw, marginH);
-  }
-  noFill();
-  stroke(bgColor, 204);
-  strokeWeight(6);
-  shape(multec, 0, 0, mw, mh);
-  fill(fgColor);
-  noStroke();
-  shape(multec, 0, 0, mw, mh);
-  popMatrix();
 }
 
 // *********************************************************************************************
@@ -291,6 +266,34 @@ void drawBanner(int tx, int ty, color c1, color c2) {
   tg.rect(0, round(ty - ascent), width, round(ascent + descent));
   tg.fill(c2);
   tg.text(txt, tx, ty);
+}
+
+// *********************************************************************************************
+// Multec logo:
+// ---------------------------------------------------------------------------------------------
+
+void drawMultec() {
+  float mw = 100;
+  float mh = multec.height * mw / multec.width;
+  multec.disableStyle();
+  pushMatrix();
+  if (layout == "links") {
+    translate(marginW, height - 25 - mh);
+  }
+  else if (layout == "rechts" || layout == "centraal") {
+    translate(width - marginW - mw, height - 25 - mh);
+  }
+  else {
+    translate(width - marginW - mw, marginH);
+  }
+  noFill();
+  stroke(bgColor, 204);
+  strokeWeight(6);
+  shape(multec, 0, 0, mw, mh);
+  fill(fgColor);
+  noStroke();
+  shape(multec, 0, 0, mw, mh);
+  popMatrix();
 }
 
 // *********************************************************************************************
